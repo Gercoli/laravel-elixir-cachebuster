@@ -19,7 +19,7 @@
       "src/helpers.php"
     ],
     "psr-4": {
-      "GErcoli\\CacheBuster": "src"
+      "GErcoli\\CacheBuster\\": "src"
     }
   },
   "minimum-stability": "stable"
