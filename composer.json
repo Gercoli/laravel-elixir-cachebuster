@@ -1,18 +1,26 @@
 {
-    "name": "gercoli/laravel-elixir-cachebuster",
-    "description": "An extension for laravel/elixir that adds cache busting to assets without making duplicate files.",
-    "require": {
-        "laravel/framework": "5.0.*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.5"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Garry Ercoli",
-            "email": "Garry@GErcoli.com"
-        }
+  "name": "gercoli/laravel-elixir-cachebuster",
+  "description": "An extension for laravel/elixir that adds cache busting to assets without making duplicate files.",
+  "license": "MIT",
+  "require": {
+    "laravel/framework": "5.0.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.5"
+  },
+  "authors": [
+    {
+      "name": "Garry Ercoli",
+      "email": "Garry@GErcoli.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "src/helpers.php"
     ],
-    "minimum-stability": "dev"
+    "psr-4": {
+      "GErcoli\\CacheBuster": "src"
+    }
+  },
+  "minimum-stability": "stable"
 }
