@@ -14,22 +14,31 @@ if ( ! function_exists('asset_url'))
     function asset_url($file, $query_array = array())
     {
         static $json = null;
-        static $json_filename = Container::getInstance()->make("path.public") . "/cachebuster.json";
+        $json_filename = Container::getInstance()->make("path.public") . "/cachebuster.json";
 
         if(strlen(trim($file)) == 0)
         {
             throw new InvalidArgumentException("No file parameter given.");
         }
 
-        if(file_exists($json_filename))
+        if(is_null($json))
         {
-            $json = json_decode(file_get_contents($json_filename), true);
-            if(isset($json[$file]))
+            $json = [];
+            if(file_exists($json_filename))
             {
-                $query_array[$json[$file]] = $json[$file];
+                $json = json_decode(file_get_contents($json_filename), true);
             }
         }
 
-        return "{$file}?" . http_build_query($query_array);
+        //echo "filename: " . $json_filename;
+
+        $query_string = http_build_query($query_array);
+        if(isset($json[$file]))
+        {
+            $query_string = $json[$file] . ((strlen($query_string) > 0) ? '&' . $query_string : '');
+        }
+
+        return $file . ((strlen($query_string) > 0) ? "?" . $query_string : '');
+
     }
 }
